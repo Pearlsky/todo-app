@@ -38,8 +38,8 @@ Introduce your projects by taking a screenshot or a gif. Try to tell visitors a 
 
 <!-- This section should list any major frameworks that you built your project using. Here are a few examples.-->
 
-- [Vanilla JS](https://reactjs.org/)
-- [BEM Architecture](https://vuejs.org/)
+- [Vanilla JS](https://javascript.com/)
+- [BEM Architecture](https://en.bem.info/)
 
 ## Features
 
@@ -50,6 +50,6 @@ This application/site was created as a [DevChallenges](https://devchallenges.io/
 
 ## Reach Me
 
-- Website [pearlsky.supers.site](https://pearlsky.supers.site)
+- Website [pearlsky.superzz.site](https://pearlsky.supers.site)
 - GitHub [@pearlsky](https://github.com/@pearlsky)
 - Twitter [@godaffected](https://twitter.com/godaffected)
