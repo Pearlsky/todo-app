@@ -1,0 +1,111 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="icon" href="images/todo.ico">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&family=Monoton&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="/css/normalize.css">
+    <link rel="stylesheet" href="/css/styles.css">
+    <script src="js/ranks.js" defer></script>
+    <script src="js/app.js" defer></script>
+
+    <title>to-do | Automate tasks with ease</title>
+  </head>
+  <body>
+    <div class="max-margin">
+      <header class="">
+        <h1 class="todo-title">#to-do</h1>
+      </header>
+
+      <main class="">
+        <section class="task-rank">
+          <div class="all">
+            <a href="" class="all__link relative">All</a>
+          </div>
+
+          <div class="active">
+            <a href="" class="active__link">Active</a>
+          </div>
+
+          <div class="completed">
+            <a href="" class="completed__link">Completed</a>
+          </div>
+        </section>
+
+        <section class="task-body">
+          <div class="task-body__all">
+              <article>
+                <form action="#" class="input">
+                  <label for="" class="input__label">
+                  <input type="text" class="textbox input__textbox" placeholder="add details"/>
+                  </label>
+                  <div class="input__button-wrap">
+                    <button type="submit" class="input__submit-btn">Add</button>
+                  </div>
+                </form>
+              </article>
+    
+              <article>
+                  <ul class="list">
+
+                    <!-- <li class="list__option">
+                      <input type="checkbox" class="list__tick"/>
+                      <p class="list__text">Do coding challenges</p>
+                    </li> -->
+
+                  </ul>
+              </article>
+          </div>
+
+          <div class="task-body__active hidden">
+            <article>
+              <form action="#" class="input">
+                <label for="" class="input__label">
+                  <input type="text" class="textbox input__textbox" placeholder="add details"/>
+                </label>
+                <div class="input__button-wrap">
+                  <button type="submit" class="input__submit-btn">Add</button>
+                </div>
+              </form>
+            </article>
+  
+            <article>
+                <ul class="list">
+
+                  <!-- <li class="list__option">
+                    <input type="checkbox" class="list__tick"/>
+                    <p class="list__text">Do coding challenges</p>
+                  </li> -->
+
+                </ul>
+            </article>
+          </div>
+
+          <div class="task-body__completed hidden">
+            <article>
+                <ul class="list">
+
+                  <!-- <li class="list__option">
+                    <input type="checkbox" class="list__tick"/>
+                    <p class="list__text">Do coding challenges</p>
+                    <div class="list__del"><img src="images/trash.svg" alt="delete" class="deltask"></div>
+                  </li> -->
+
+                </ul>
+                <div class="list__delall"><button class="btn-delall"><img src="images/trash-white.svg" alt=""><span> delete all</span></button></div>
+            </article>
+          </div>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>
