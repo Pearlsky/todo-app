@@ -8,7 +8,7 @@ Vanilla JS Todo App
 ## Table of Contents
 
 - [Overview](#overview)
-  - [Built With](#built-with)
+- [Built With](#built-with)
 - [Features](#features)
 - [How to use](#how-to-use)
 - [Contact](#contact)
@@ -22,7 +22,7 @@ Vanilla JS Todo App
 Introduce your projects by taking a screenshot or a gif. Try to tell visitors a story about your project by answering:
 
 ### Demo
-- You can view the demo for for this to-do app [here])()
+- You can view the demo for for this to-do app [here](https://#)
 
 ### Experience
 - When I started out with imagining how the logic for adding, ticking and deleting tasks should be, i imagined using array methods to flex. Turns out DOM Methods and their return values require a bit more care than assumption.
@@ -31,7 +31,7 @@ Introduce your projects by taking a screenshot or a gif. Try to tell visitors a 
 
 - I could gush about all I learned building this app cos it really was fun (always) and very enlightening
 
-# Learning & Improvements
+### Learning & Improvements
 - My debugging skills? I'm at a confident console.log debugging level, haha -- now I sound unserious
 
 
