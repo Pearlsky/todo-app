@@ -10,8 +10,7 @@ Vanilla JS Todo App
 - [Overview](#overview)
 - [Built With](#built-with)
 - [Features](#features)
-- [How to use](#how-to-use)
-- [Contact](#contact)
+- [Reach Me](#contact)
 
 <!-- OVERVIEW -->
 
