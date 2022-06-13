@@ -21,10 +21,10 @@ Vanilla JS Todo App
 
 Introduce your projects by taking a screenshot or a gif. Try to tell visitors a story about your project by answering:
 
-# Demo
+### Demo
 - You can view the demo for for this to-do app [here])()
 
-# Experience
+### Experience
 - When I started out with imagining how the logic for adding, ticking and deleting tasks should be, i imagined using array methods to flex. Turns out DOM Methods and their return values require a bit more care than assumption.
 
 - I had just learnt about High Order Functions and I really wanted to explore that while building this app. But everytime I thought about the logic, a lot of it just lacked correlation. Eventually I settled for the MVC Pattern which I got introduced to while study Head First JS. I didn't know a lot about it, I still don't  know so much but it made code structure a bit more sensible and less voo-doo looking when i broke it down to model, view and controller roles.
@@ -35,7 +35,7 @@ Introduce your projects by taking a screenshot or a gif. Try to tell visitors a 
 - My debugging skills? I'm at a confident console.log debugging level, haha -- now I sound unserious
 
 
-### Built With
+## Built With
 
 <!-- This section should list any major frameworks that you built your project using. Here are a few examples.-->
 
