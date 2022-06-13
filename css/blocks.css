@@ -1,0 +1,116 @@
+/* header */
+.todo-title {
+    font-family: 'Monoton', monospace;
+    font-weight: 100;
+    text-align: center;
+    width: 100%;
+}
+
+
+/* ranks */
+.task-rank {
+    display: flex;
+    justify-content: space-around;
+    padding: 0.95em;
+    border-bottom: solid 1px #d3d3d3;
+}
+
+
+/* task */
+.task-body {
+    height: 25rem;
+    position: relative;
+    display: flex;
+}
+
+.task-body article {
+    margin: 1.5em auto 2.5em;
+    padding: 0 1em;
+}
+
+.task-body > div {
+    position: absolute;
+    width: 100%;
+    flex-grow: 100%;
+}
+
+/* task-input*/
+
+.input {
+    display: flex;
+    justify-content: space-between;
+}
+
+.input__label {
+    flex-basis: 80%;
+}
+
+.input__button-wrap {
+    flex-basis: 15%;
+}
+
+.input__textbox {
+    width: 100%;
+    padding: 1.25em .9em;
+    border: solid 1px #d3d3d3;
+    border-radius: 10px;
+    box-shadow: .5px .5px 4px 1px #e9e9e9;
+}
+
+.input__submit-btn{
+    background-color: #2F80ED;
+    border: solid 1px #2F80ED;
+    border-radius: 10px;
+    box-shadow: .5px .5px 2px 1px #2F80ED;
+    color: #fff;
+    padding: 1.15em 0;
+    width: 100%;
+}
+
+
+/* task-list */
+.list__option {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 1.5em;
+}
+
+.list__tick {
+    width: 1.5em;
+    height: 1.5em;
+}
+
+.list__text {
+    margin: 0;
+    flex-basis: 93%;
+}
+
+.task-body__completed .list__text {
+    flex-basis: 85%;
+}
+
+.list__del {
+    flex-basis: 5%;
+}
+
+.list__delall {
+    margin-top: 2.5em;
+}
+
+.btn-delall {
+    background-color: #EB5757;
+    border: solid 1px #EB5757;
+    border-radius: 7px;
+    color: #fff;
+    padding: 1.2em 1.7em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: auto;
+}
+
+.btn-delall span {
+    font-size: 0.9rem;
+    margin-left: .5em;
+}

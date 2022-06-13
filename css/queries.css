@@ -1,0 +1,13 @@
+@media (min-width: 43.75rem) {
+    main {
+        width: 90%;
+        margin: 2em auto;
+    }
+}
+
+@media (min-width: 62.5rem) {
+    main {
+        width: 70%;
+        margin: 3em auto 1em;
+    }
+}

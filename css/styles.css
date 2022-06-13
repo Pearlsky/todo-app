@@ -1,0 +1,40 @@
+@import url(queries.css);
+@import url(blocks.css);
+@import url(states.css);
+
+:root {
+    box-sizing: border-box;
+    --textBlack: #000;
+    --mainBlue: #2F80ED; 
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+
+.max-margin {
+    max-width: 64em;
+    margin: 0 auto;
+    padding: 2em 1.5em;
+}
+
+body {
+    font-family: 'IBM Plex Mono', monospace;
+}
+
+a {
+    text-decoration: none;
+    color: var(--textBlack);
+    padding: 1em .5em;
+}
+
+ul {
+    padding-left: 0;
+}
+
+li {
+    list-style-type: none;
+}
+
