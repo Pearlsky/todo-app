@@ -73,7 +73,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-top: 1.5em;
+    margin-top: .25em;
 }
 
 .list__tick {
@@ -81,12 +81,27 @@
     height: 1.5em;
 }
 
-.list__text {
+.list__textwrap {
     margin: 0;
     flex-basis: 93%;
 }
 
-.task-body__completed .list__text {
+.list__text{
+    position: relative;
+    width: fit-content;
+}
+
+.list__text::before {
+    content: '';
+    /* position: absolute; */
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: #000;
+}
+
+.task-body__completed .list__textwrap {
     flex-basis: 85%;
 }
 
