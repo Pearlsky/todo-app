@@ -32,10 +32,25 @@ a:visited {
 
 /* js states */
 
+.hidden {
+    display: none;
+}
+
 .relative {
     position: relative;
 }
 
-.hidden {
-    display: none;
+.tick-relative {
+    position: relative;
+    width: fit-content;
+}
+
+.tick-relative::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: -10%;
+    width: 120%;
+    height: 1px;
+    background-color: #000;
 }
