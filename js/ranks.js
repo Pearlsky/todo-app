@@ -1,3 +1,5 @@
+"use strict"
+
 // navigate task ranks
 
 function selectTaskRank () {
