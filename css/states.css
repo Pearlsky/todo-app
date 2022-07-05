@@ -49,8 +49,8 @@ a:visited {
     content: '';
     position: absolute;
     top: 50%;
-    left: -10%;
-    width: 120%;
+    left: -2.5%;
+    width: 105%;
     height: 1px;
     background-color: #000;
 }
