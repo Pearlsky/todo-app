@@ -16,7 +16,7 @@ const view = {
     taskRank.appendChild(taskChild);
   },
 
-  deleteTask: function(taskRank, taskChild) {
+  deleteTask: function (taskRank, taskChild) {
     taskRank.removeChild(taskChild);
   }
 };
@@ -65,23 +65,23 @@ const controller = {
 
     taskList.appendChild(taskDelWrap);
   },
-  
+
   removeTaskDelete: function (list) {
     list.removeChild(list.lastChild);
   },
-  
+
   //tick off a task item
   tickOff: function (listText) {
     listText.classList.add("tick-relative");
   },
-  
+
   untick: function (listText) {
     listText.classList.remove("tick-relative");
   },
 
-  deleteATask: function(parent, parentListItem, allTaskParent, allTaskListItem) {
-      view.deleteTask(parent, parentListItem);
-      view.deleteTask(allTaskParent, allTaskListItem);
+  deleteATask: function (parent, parentListItem, allTaskParent, allTaskListItem) {
+    view.deleteTask(parent, parentListItem);
+    view.deleteTask(allTaskParent, allTaskListItem);
   },
 
   tickTasks: function () {
@@ -108,7 +108,7 @@ const controller = {
           this.addTaskDelete(
             this.taskranks[this.taskranks.length - 1].firstElementChild
           );
-          
+
           let completedTasks = Array.from(model.completdTasksRank.children);
           completedTasks.forEach((el, i) => {
             el.firstChild.addEventListener("change", (e) => {
@@ -130,7 +130,7 @@ const controller = {
               }
             });
 
-            el.lastChild.addEventListener("click", (e) => {
+            el.lastChild.addEventListener("click", () => {
               let index = allTasks.findIndex(
                 (elem) =>
                   elem.lastChild.firstChild.textContent ===
@@ -139,9 +139,8 @@ const controller = {
               this.deleteATask(this.taskranks[2], el, this.taskranks[0], allTasks[index]);
             });
           });
-          
-        } else {
 
+        } else {
           this.untick(el.firstChild.nextSibling.firstChild);
 
           let completedTasks = Array.from(model.completdTasksRank.children);
@@ -200,7 +199,6 @@ const controller = {
               view.displayOldTasks(this.taskranks[1], ...completedTasks.splice(i, 1));
 
               activeTasks = Array.from(this.taskranks[1].children);
-              debugger;
             }
           });
 
@@ -218,7 +216,24 @@ const controller = {
   },
 
   deleteAllTasks: function() {
-    
+    let allTaskArray = Array.from(model.allTasksRank.children);
+    let completedTaskArray = Array.from(model.completdTasksRank.children);
+
+    if (completedTaskArray.length === 0) {
+      return;
+    }
+
+    else {
+        completedTaskArray.forEach((el) => {
+          let index = allTaskArray.findIndex(
+            (elem) =>
+              elem.lastChild.firstChild.textContent ===
+              el.firstChild.nextSibling.firstChild.textContent
+          );
+
+          this.deleteATask(this.taskranks[2], el, this.taskranks[0], allTaskArray[index]);
+        })
+    }
   },
 };
 
@@ -241,4 +256,14 @@ function getTaskInput() {
   });
 }
 
+function removeTaskInput() {
+  const buttonElement = controller.taskranks[2].nextElementSibling.firstChild;
+
+  buttonElement.addEventListener("click", () => {
+    debugger;
+    controller.deleteAllTasks();
+  });
+}
+
 getTaskInput();
+removeTaskInput();
