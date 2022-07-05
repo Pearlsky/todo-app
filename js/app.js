@@ -1,3 +1,5 @@
+"use strict"
+
 const model = {
   allTasksRank: document.querySelector(".task-body__all .list"),
   activeTasksRank: document.querySelector(".task-body__active .list"),
@@ -13,6 +15,10 @@ const view = {
   displayOldTasks: function (taskRank, taskChild) {
     taskRank.appendChild(taskChild);
   },
+
+  deleteTask: function(taskRank, taskChild) {
+    taskRank.removeChild(taskChild);
+  }
 };
 
 const controller = {
@@ -21,7 +27,31 @@ const controller = {
     model.activeTasksRank,
     model.completdTasksRank,
   ],
-  
+
+  // create a task by creating a checkbox and list element from the user input for the all and active task ranks only
+  createTask: function (input) {
+    for (let i = 0; i < this.taskranks.length - 1; i++) {
+      const task = document.createElement("li");
+      const taskCheckbox = document.createElement("input");
+      const taskTextwrap = document.createElement("div");
+      const taskDetail = document.createElement("p");
+
+      task.classList.add("list__option");
+      taskCheckbox.classList.add("list__tick");
+      taskCheckbox.setAttribute("type", "checkbox");
+      taskTextwrap.classList.add("list__textwrap");
+      taskDetail.classList.add("list__text");
+      taskDetail.textContent = input;
+
+      taskTextwrap.appendChild(taskDetail);
+
+      task.appendChild(taskCheckbox);
+      task.appendChild(taskTextwrap);
+
+      view.displayTasks(this.taskranks[i], task);
+    }
+  },
+
   //function to add the delete icon to task items under complete task rank 
   addTaskDelete: function (taskList) {
     const taskDelWrap = document.createElement("div");
@@ -49,33 +79,14 @@ const controller = {
     listText.classList.remove("tick-relative");
   },
 
-  // create a task by creating a checkbox and list element from the user input for the all and active task ranks only
-  createTask: function (input) {
-    for (let i = 0; i < this.taskranks.length - 1; i++) {
-      const task = document.createElement("li");
-      const taskCheckbox = document.createElement("input");
-      const taskTextwrap = document.createElement("div");
-      const taskDetail = document.createElement("p");
-
-      task.classList.add("list__option");
-      taskCheckbox.classList.add("list__tick");
-      taskCheckbox.setAttribute("type", "checkbox");
-      taskTextwrap.classList.add("list__textwrap");
-      taskDetail.classList.add("list__text");
-      taskDetail.textContent = input;
-
-      taskTextwrap.appendChild(taskDetail);
-
-      task.appendChild(taskCheckbox);
-      task.appendChild(taskTextwrap);
-
-      view.displayTasks(this.taskranks[i], task);
-    }
+  deleteATask: function(parent, parentListItem, allTaskParent, allTaskListItem) {
+      view.deleteTask(parent, parentListItem);
+      view.deleteTask(allTaskParent, allTaskListItem);
   },
 
-  tickTask: function () {
-    const allTasks = Array.from(model.allTasksRank.children);
-    const activeTasks = Array.from(model.activeTasksRank.children);
+  tickTasks: function () {
+    let allTasks = Array.from(this.taskranks[0].children);
+    let activeTasks = Array.from(this.taskranks[1].children);
 
     allTasks.forEach((el) => {
       el.firstChild.addEventListener("change", (e) => {
@@ -92,16 +103,17 @@ const controller = {
 
           view.displayTasks(
             this.taskranks[this.taskranks.length - 1],
-            activeTasks[index]
+            ...activeTasks.splice(index, 1)
           );
           this.addTaskDelete(
             this.taskranks[this.taskranks.length - 1].firstElementChild
           );
-
-          const completedTasks = Array.from(model.completdTasksRank.children);
-          completedTasks.forEach((el) => {
+          
+          let completedTasks = Array.from(model.completdTasksRank.children);
+          completedTasks.forEach((el, i) => {
             el.firstChild.addEventListener("change", (e) => {
               if (!e.target.checked) {
+
                 index = allTasks.findIndex(
                   (elem) =>
                     elem.lastChild.firstChild.textContent ===
@@ -112,25 +124,27 @@ const controller = {
 
                 this.removeTaskDelete(el);
                 this.untick(el.firstChild.nextSibling.firstChild);
-                view.displayOldTasks(this.taskranks[1], el);
+
+                view.displayOldTasks(this.taskranks[1], ...completedTasks.splice(i, 1));
+                activeTasks = Array.from(this.taskranks[1].children);
               }
             });
 
-            el.lastChild.firstChild.addEventListener ("click", (e) => {
-                // let delIndex = allTasks.findIndex((element) => {
-                //     element.firstChild.nextSibling.textContent === el.lastChild.previousSibling.textContent
-                // });
-                // allTasks.splice(delIndex, 1);
-                // completedTasks.splice(el, 1);
+            el.lastChild.addEventListener("click", (e) => {
+              let index = allTasks.findIndex(
+                (elem) =>
+                  elem.lastChild.firstChild.textContent ===
+                  el.firstChild.nextSibling.firstChild.textContent);
 
-                console.log(el);
+              this.deleteATask(this.taskranks[2], el, this.taskranks[0], allTasks[index]);
             });
           });
+          
         } else {
 
           this.untick(el.firstChild.nextSibling.firstChild);
 
-          const completedTasks = Array.from(model.completdTasksRank.children);
+          let completedTasks = Array.from(model.completdTasksRank.children);
           let index = completedTasks.findIndex(
             (elem) =>
               elem.firstChild.nextSibling.textContent ===
@@ -141,12 +155,13 @@ const controller = {
           this.untick(completedTasks[index].firstChild.nextSibling.firstChild);
 
           this.removeTaskDelete(completedTasks[index]);
-          view.displayTasks(this.taskranks[1], completedTasks[index]);
+          view.displayTasks(this.taskranks[1], ...completedTasks.splice(index, 1));
+          activeTasks = Array.from(this.taskranks[1].children);
         }
       });
     });
 
-    activeTasks.forEach((el) => {
+    activeTasks.forEach((el, i) => {
       el.firstChild.addEventListener("change", (e) => {
         if (e.target.checked) {
           this.tickOff(el.firstChild.nextSibling.firstChild);
@@ -159,43 +174,51 @@ const controller = {
           allTasks[index].firstChild.checked = true;
           this.tickOff(allTasks[index].firstChild.nextSibling.firstChild);
 
-          view.displayTasks(this.taskranks[this.taskranks.length - 1], el);
+          view.displayTasks(this.taskranks[this.taskranks.length - 1], ...activeTasks.splice(i, 1));
           this.addTaskDelete(
             this.taskranks[this.taskranks.length - 1].firstElementChild
           );
-
-          const completedTasks = Array.from(model.completdTasksRank.children);
-          completedTasks.forEach((el) => {
-            el.firstChild.addEventListener("change", (e) => {
-              if (!e.target.checked) {
-                this.untick(el.firstChild.nextSibling.firstChild);
-
-                index = allTasks.findIndex(
-                  (elem) =>
-                    elem.lastChild.firstChild.textContent ===
-                    el.firstChild.nextSibling.firstChild.textContent
-                );
-                allTasks[index].firstChild.checked = false;
-                this.untick(allTasks[index].firstChild.nextSibling.firstChild);
-
-                this.removeTaskDelete(el);
-                view.displayOldTasks(this.taskranks[1], el);
-              }
-            });
-
-            el.lastChild.firstChild.addEventListener ("click", (e) => {
-                // let delIndex = allTasks.findIndex((element) => {
-                //     element.firstChild.nextSibling.textContent === el.lastChild.previousSibling.textContent
-                // });
-                // allTasks.splice(delIndex, 1);
-                // completedTasks.splice(el, 1);
-
-                console.log(el);
-            });
-          });
         }
+
+        let completedTasks = Array.from(model.completdTasksRank.children);
+
+        completedTasks.forEach((el, i) => {
+          el.firstChild.addEventListener("change", (e) => {
+            if (!e.target.checked) {
+
+              let index = allTasks.findIndex(
+                (elem) =>
+                  elem.lastChild.firstChild.textContent ===
+                  el.firstChild.nextSibling.firstChild.textContent
+              );
+              allTasks[index].firstChild.checked = false;
+              this.untick(allTasks[index].firstChild.nextSibling.firstChild);
+
+              this.removeTaskDelete(el);
+              this.untick(el.firstChild.nextSibling.firstChild);
+
+              view.displayOldTasks(this.taskranks[1], ...completedTasks.splice(i, 1));
+
+              activeTasks = Array.from(this.taskranks[1].children);
+              debugger;
+            }
+          });
+
+          el.lastChild.addEventListener("click", (e) => {
+            let index = allTasks.findIndex(
+              (elem) =>
+                elem.lastChild.firstChild.textContent ===
+                el.firstChild.nextSibling.firstChild.textContent);
+
+            this.deleteATask(this.taskranks[2], el, this.taskranks[0], allTasks[index]);
+          });
+        });
       });
     });
+  },
+
+  deleteAllTasks: function() {
+    
   },
 };
 
@@ -212,7 +235,7 @@ function getTaskInput() {
         e.preventDefault();
         controller.createTask(taskInputs[i].value);
         taskInputs[i].value = "";
-        controller.tickTask();
+        controller.tickTasks();
       } else return (taskInputs[i].value = "");
     });
   });
