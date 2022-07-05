@@ -21,7 +21,7 @@ Vanilla JS Todo App
 This is Vanilla JS Todo App, built to practically test my immediate understanding of basic JS Fundamentals (or maybe the half of it, since I'm only halfway there) and to conceptually understand MVC Architecture. 
 
 ### Demo
-You can view the demo for for this to-do app [here](https://#)
+You can view the demo for for this to-do app [here](https://todo-automate.vercel.app)
 
 ### Experience
 - When I started out with imagining how the logic for adding, ticking and deleting tasks should be, i imagined using array methods to flex. Turns out DOM Methods and their return values require a bit more care than assumption.
