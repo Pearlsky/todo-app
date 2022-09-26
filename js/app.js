@@ -260,7 +260,6 @@ function removeTaskInput() {
   const buttonElement = controller.taskranks[2].nextElementSibling.firstChild;
 
   buttonElement.addEventListener("click", () => {
-    debugger;
     controller.deleteAllTasks();
   });
 }
